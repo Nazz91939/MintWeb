@@ -80,8 +80,8 @@ nav ul li a {
 
 /* Hero Section and Slider */
 .hero {
-    margin-top: 80px;
-    height: 100vh;
+    margin-top: 60px;
+    height: calc(100vh - 60px);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -115,6 +115,7 @@ nav ul li a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .hero-content {
@@ -122,9 +123,13 @@ nav ul li a {
     z-index: 2;
     text-align: center;
     color: white;
-    padding: 0 20px;
+    padding: 20px;
     max-width: 800px;
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content h1 {
@@ -154,6 +159,7 @@ nav ul li a {
     letter-spacing: 1px;
     border: 2px solid #1abc9c;
     text-shadow: none;
+    margin-top: auto;
 }
 
 .explore-btn:hover {
@@ -416,27 +422,30 @@ footer {
 
     /* Hero Section */
     .hero {
-        height: 100vh;
-        min-height: -webkit-fill-available;
+        margin-top: 50px;
+        height: calc(100vh - 50px);
+        min-height: 500px;
     }
 
     .hero-content {
-        padding: 0 15px;
+        padding: 15px;
     }
 
     .hero-content h1 {
-        font-size: 2.2rem;
-        margin-bottom: 1rem;
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
     }
 
     .hero-content p {
         font-size: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .explore-btn {
         padding: 12px 24px;
         font-size: 1rem;
+        position: relative;
+        bottom: 20px;
     }
 }
 
@@ -512,6 +521,6 @@ footer {
 /* Fix for iOS Safari 100vh issue */
 @supports (-webkit-touch-callout: none) {
     .hero {
-        height: -webkit-fill-available;
+        height: calc(-webkit-fill-available - 50px);
     }
 } 
