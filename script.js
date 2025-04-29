@@ -78,4 +78,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 250);
     });
+
+    // Featured Drinks Carousel
+    const carousel = document.querySelector('.drinks-carousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const cardWidth = 300; // Width of each card including gap
+    let currentPosition = 0;
+
+    function scrollCarousel(direction) {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        
+        if (direction === 'next') {
+            currentPosition = Math.min(currentPosition + cardWidth, maxScroll);
+        } else {
+            currentPosition = Math.max(currentPosition - cardWidth, 0);
+        }
+        
+        carousel.scrollTo({
+            left: currentPosition,
+            behavior: 'smooth'
+        });
+    }
+
+    prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+    nextBtn.addEventListener('click', () => scrollCarousel('next'));
+
+    // Touch swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                scrollCarousel('prev');
+            } else {
+                scrollCarousel('next');
+            }
+        }
+    }
 }); 
